@@ -39,7 +39,8 @@ location = input()
 print("Does the person have a profile picture? y/n (optional): ")
 pfpPresent = input()
 
-steamURL = "https://steamcommunity.com/search/users/#page=1&text=" + username
+page = 1
+steamURL = "https://steamcommunity.com/search/users/#page=" + str(page) + "&text=" + username
 css_selector = ".search_row"
 soup = wait_and_scrape(steamURL, css_selector)
 mydivs = soup.find_all("div", {"class": "search_row"})
@@ -61,9 +62,12 @@ for user in mydivs:
     currentHasPfp = True
     if user.find("img")['src'] == "https://avatars.fastly.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg":
         currentHasPfp = False
+
+    profileURL = user.find("a")['href']
         
     print(currentUsername)
     print(currentRealName)
     print(currentLocation)
     print(currentHasPfp)
+    print(profileURL)
     print()
