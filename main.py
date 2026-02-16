@@ -23,7 +23,7 @@ elif pfpPresent != "": pfpPresent = False
 print("Start searching from page (optional, in case an error occurs): ")
 page = input()
 try:
-    int(page)
+    page = int(page)
 except ValueError:
     page = 1
 
@@ -88,4 +88,4 @@ while True:
         print(currentHasPfp)
         print(profileURL)
         print()
-    page+=1
+    page += 1
